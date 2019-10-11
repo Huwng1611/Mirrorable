@@ -1,0 +1,75 @@
+{
+  "width": 512,
+  "imagePath": "orge_tex.png",
+  "height": 1024,
+  "name": "orge",
+  "SubTexture": [
+    {
+      "width": 87,
+      "y": 596,
+      "height": 83,
+      "name": "demo2_0003_than_0002_Layer-2",
+      "x": 192
+    },
+    {
+      "width": 151,
+      "y": 240,
+      "height": 230,
+      "name": "demo2_0004_taytr",
+      "x": 295
+    },
+    {
+      "width": 87,
+      "y": 490,
+      "height": 104,
+      "name": "demo2_0003_than_0000_Layer-1",
+      "x": 157
+    },
+    {
+      "width": 200,
+      "y": 1,
+      "height": 237,
+      "name": "demo2_0003_than_0001_Layer-0-copy",
+      "x": 293
+    },
+    {
+      "width": 154,
+      "y": 490,
+      "height": 158,
+      "name": "demo2_0000_dau",
+      "x": 1
+    },
+    {
+      "width": 189,
+      "y": 650,
+      "height": 71,
+      "name": "demo2_0002_quan",
+      "x": 1
+    },
+    {
+      "width": 292,
+      "y": 282,
+      "height": 206,
+      "name": "demo2_0005_vk",
+      "x": 1
+    },
+    {
+      "width": 133,
+      "y": 472,
+      "height": 235,
+      "name": "demo2_0001_tayp",
+      "x": 295
+    },
+    {
+      "y": 1,
+      "frameWidth": 300,
+      "x": 1,
+      "frameHeight": 292,
+      "width": 290,
+      "frameY": -5,
+      "height": 279,
+      "name": "windd",
+      "frameX": -4
+    }
+  ]
+}

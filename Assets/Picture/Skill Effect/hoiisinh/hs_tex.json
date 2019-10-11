@@ -1,0 +1,33 @@
+{
+  "SubTexture": [
+    {
+      "width": 418,
+      "y": 1,
+      "height": 419,
+      "name": "Untitled-1_0003_Layer-4",
+      "x": 1
+    },
+    {
+      "width": 12,
+      "y": 154,
+      "height": 215,
+      "name": "Untitled-1_0004_Layer-2",
+      "x": 421
+    },
+    {
+      "frameX": 0,
+      "y": 1,
+      "frameY": 0,
+      "frameWidth": 122,
+      "width": 118,
+      "frameHeight": 151,
+      "height": 151,
+      "name": "k1",
+      "x": 421
+    }
+  ],
+  "width": 1024,
+  "height": 512,
+  "name": "hs",
+  "imagePath": "hs_tex.png"
+}

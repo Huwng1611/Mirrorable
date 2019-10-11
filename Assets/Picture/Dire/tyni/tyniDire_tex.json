@@ -1,0 +1,68 @@
+{
+  "width": 1024,
+  "imagePath": "tyni_tex.png",
+  "height": 512,
+  "name": "tyni",
+  "SubTexture": [
+    {
+      "width": 147,
+      "y": 1,
+      "height": 275,
+      "name": "demo2_0004_taytr",
+      "x": 741
+    },
+    {
+      "width": 167,
+      "y": 278,
+      "height": 191,
+      "name": "demo2_0003_Layer-7-copy-3",
+      "x": 741
+    },
+    {
+      "width": 104,
+      "y": 155,
+      "height": 108,
+      "name": "2",
+      "x": 890
+    },
+    {
+      "width": 128,
+      "y": 1,
+      "height": 152,
+      "name": "3",
+      "x": 890
+    },
+    {
+      "width": 265,
+      "y": 1,
+      "height": 254,
+      "name": "1",
+      "x": 293
+    },
+    {
+      "width": 179,
+      "y": 1,
+      "height": 295,
+      "name": "demo2_0001_tayp",
+      "x": 560
+    },
+    {
+      "width": 179,
+      "y": 257,
+      "height": 168,
+      "name": "demo2_0000_dau",
+      "x": 293
+    },
+    {
+      "y": 1,
+      "frameWidth": 300,
+      "x": 1,
+      "frameHeight": 292,
+      "width": 290,
+      "frameY": -5,
+      "height": 279,
+      "name": "windd",
+      "frameX": -4
+    }
+  ]
+}

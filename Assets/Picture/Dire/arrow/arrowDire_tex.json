@@ -1,0 +1,79 @@
+{
+  "width": 512,
+  "imagePath": "arrow_tex.png",
+  "height": 512,
+  "name": "arrowDire",
+  "SubTexture": [
+    {
+      "width": 39,
+      "y": 1,
+      "height": 51,
+      "name": "demo2_0007_chanp",
+      "x": 462
+    },
+    {
+      "width": 39,
+      "y": 54,
+      "height": 51,
+      "name": "demo2_0006_chantr",
+      "x": 462
+    },
+    {
+      "width": 81,
+      "y": 222,
+      "height": 105,
+      "name": "demo2_0003_than",
+      "x": 430
+    },
+    {
+      "width": 90,
+      "y": 282,
+      "height": 70,
+      "name": "demo2_0005_taytr",
+      "x": 1
+    },
+    {
+      "width": 167,
+      "y": 1,
+      "height": 219,
+      "name": "demo2_0004_cung",
+      "x": 293
+    },
+    {
+      "width": 135,
+      "y": 222,
+      "height": 219,
+      "name": "demo2_0000_dau",
+      "x": 293
+    },
+    {
+      "width": 55,
+      "y": 329,
+      "height": 95,
+      "name": "demo2_0002_tayp",
+      "x": 430
+    },
+    {
+      "y": 426,
+      "frameWidth": 51,
+      "x": 430,
+      "frameHeight": 56,
+      "width": 48,
+      "frameY": 0,
+      "height": 56,
+      "name": "demo2_0001_cauvai",
+      "frameX": -3
+    },
+    {
+      "y": 1,
+      "frameWidth": 300,
+      "x": 1,
+      "frameHeight": 292,
+      "width": 290,
+      "frameY": -5,
+      "height": 279,
+      "name": "windd",
+      "frameX": -4
+    }
+  ]
+}

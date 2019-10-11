@@ -1,0 +1,89 @@
+{
+  "width": 512,
+  "imagePath": "warl_tex.png",
+  "height": 512,
+  "name": "warl",
+  "SubTexture": [
+    {
+      "width": 31,
+      "y": 447,
+      "height": 37,
+      "name": "demo2_0002_than_0002_Layer-4",
+      "x": 480
+    },
+    {
+      "width": 28,
+      "y": 467,
+      "height": 37,
+      "name": "demo2_0002_than_0001_Layer-5",
+      "x": 1
+    },
+    {
+      "width": 74,
+      "y": 282,
+      "height": 66,
+      "name": "demo2_0003_taytr",
+      "x": 325
+    },
+    {
+      "width": 69,
+      "y": 447,
+      "height": 62,
+      "name": "demo2_0002_than_0003_Layer-0",
+      "x": 235
+    },
+    {
+      "width": 55,
+      "y": 447,
+      "height": 48,
+      "name": "demo2_0002_Layer-9",
+      "x": 306
+    },
+    {
+      "width": 71,
+      "y": 447,
+      "height": 37,
+      "name": "demo2_0002_than_0000_Layer-1",
+      "x": 363
+    },
+    {
+      "width": 42,
+      "y": 447,
+      "height": 59,
+      "name": "demo2_0001_tayp",
+      "x": 436
+    },
+    {
+      "width": 232,
+      "y": 282,
+      "height": 183,
+      "name": "demo2_0001_dau",
+      "x": 1
+    },
+    {
+      "width": 88,
+      "y": 282,
+      "height": 163,
+      "name": "demo2_0005_gay",
+      "x": 235
+    },
+    {
+      "width": 30,
+      "y": 467,
+      "height": 28,
+      "name": "1212",
+      "x": 31
+    },
+    {
+      "y": 1,
+      "frameWidth": 300,
+      "x": 1,
+      "frameHeight": 292,
+      "width": 290,
+      "frameY": -5,
+      "height": 279,
+      "name": "windd",
+      "frameX": -4
+    }
+  ]
+}

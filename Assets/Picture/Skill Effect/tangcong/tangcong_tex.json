@@ -1,0 +1,173 @@
+{
+  "SubTexture": [
+    {
+      "frameX": -15,
+      "y": 189,
+      "frameY": -138,
+      "frameWidth": 114,
+      "width": 84,
+      "frameHeight": 200,
+      "height": 62,
+      "name": "Untitled-1_0000s_0013_Layer-1",
+      "x": 313
+    },
+    {
+      "frameX": -15,
+      "y": 441,
+      "frameY": -138,
+      "frameWidth": 114,
+      "width": 84,
+      "frameHeight": 200,
+      "height": 62,
+      "name": "Untitled-1_0000s_0012_Layer-2",
+      "x": 1
+    },
+    {
+      "frameX": -9,
+      "y": 112,
+      "frameY": -125,
+      "frameWidth": 114,
+      "width": 96,
+      "frameHeight": 200,
+      "height": 75,
+      "name": "Untitled-1_0000s_0011_Layer-3",
+      "x": 313
+    },
+    {
+      "frameX": -6,
+      "y": 280,
+      "frameY": -113,
+      "frameWidth": 114,
+      "width": 103,
+      "frameHeight": 200,
+      "height": 87,
+      "name": "Untitled-1_0000s_0010_Layer-4",
+      "x": 116
+    },
+    {
+      "frameX": -6,
+      "y": 273,
+      "frameY": -101,
+      "frameWidth": 114,
+      "width": 108,
+      "frameHeight": 200,
+      "height": 99,
+      "name": "Untitled-1_0000s_0009_Layer-5",
+      "x": 229
+    },
+    {
+      "frameX": -3,
+      "y": 1,
+      "frameY": -91,
+      "frameWidth": 114,
+      "width": 111,
+      "frameHeight": 200,
+      "height": 109,
+      "name": "Untitled-1_0000s_0008_Layer-6",
+      "x": 229
+    },
+    {
+      "frameX": 0,
+      "y": 1,
+      "frameY": -80,
+      "frameWidth": 114,
+      "width": 113,
+      "frameHeight": 200,
+      "height": 120,
+      "name": "Untitled-1_0000s_0007_Layer-7",
+      "x": 114
+    },
+    {
+      "frameX": 0,
+      "y": 149,
+      "frameY": -71,
+      "frameWidth": 114,
+      "width": 113,
+      "frameHeight": 200,
+      "height": 129,
+      "name": "Untitled-1_0000s_0006_Layer-8",
+      "x": 109
+    },
+    {
+      "frameX": 0,
+      "y": 301,
+      "frameY": -62,
+      "frameWidth": 114,
+      "width": 113,
+      "frameHeight": 200,
+      "height": 138,
+      "name": "Untitled-1_0000s_0005_Layer-9",
+      "x": 1
+    },
+    {
+      "frameX": -1,
+      "y": 1,
+      "frameY": -54,
+      "frameWidth": 114,
+      "width": 111,
+      "frameHeight": 200,
+      "height": 146,
+      "name": "Untitled-1_0000s_0004_Layer-10",
+      "x": 1
+    },
+    {
+      "frameX": -4,
+      "y": 149,
+      "frameY": -50,
+      "frameWidth": 114,
+      "width": 106,
+      "frameHeight": 200,
+      "height": 150,
+      "name": "Untitled-1_0000s_0003_Layer-11",
+      "x": 1
+    },
+    {
+      "frameX": -13,
+      "y": 123,
+      "frameY": -52,
+      "frameWidth": 114,
+      "width": 87,
+      "frameHeight": 200,
+      "height": 148,
+      "name": "Untitled-1_0000s_0002_Layer-12",
+      "x": 224
+    },
+    {
+      "frameX": -26,
+      "y": 369,
+      "frameY": -43,
+      "frameWidth": 114,
+      "width": 61,
+      "frameHeight": 200,
+      "height": 141,
+      "name": "Untitled-1_0000s_0001_Layer-13",
+      "x": 116
+    },
+    {
+      "frameX": -36,
+      "y": 369,
+      "frameY": -37,
+      "frameWidth": 114,
+      "width": 42,
+      "frameHeight": 200,
+      "height": 45,
+      "name": "Untitled-1_0000s_0000_Layer-14",
+      "x": 179
+    },
+    {
+      "frameX": 0,
+      "y": 112,
+      "frameY": 0,
+      "frameWidth": 64,
+      "width": 62,
+      "frameHeight": 113,
+      "height": 113,
+      "name": "tagcong1",
+      "x": 411
+    }
+  ],
+  "width": 512,
+  "height": 512,
+  "name": "tangcong",
+  "imagePath": "tangcong_tex.png"
+}

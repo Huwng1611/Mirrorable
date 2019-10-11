@@ -1,0 +1,202 @@
+{
+  "SubTexture": [
+    {
+      "frameX": -93,
+      "y": 1246,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 238,
+      "frameHeight": 450,
+      "height": 368,
+      "name": "1",
+      "x": 1105
+    },
+    {
+      "frameX": -10,
+      "y": 1,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 490,
+      "frameHeight": 450,
+      "height": 450,
+      "name": "2",
+      "x": 503
+    },
+    {
+      "frameX": 0,
+      "y": 1,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 500,
+      "frameHeight": 450,
+      "height": 439,
+      "name": "3",
+      "x": 995
+    },
+    {
+      "frameX": 0,
+      "y": 1,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 492,
+      "frameHeight": 450,
+      "height": 438,
+      "name": "4",
+      "x": 1497
+    },
+    {
+      "frameX": -13,
+      "y": 453,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 469,
+      "frameHeight": 450,
+      "height": 410,
+      "name": "5",
+      "x": 478
+    },
+    {
+      "frameX": -8,
+      "y": 441,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 477,
+      "frameHeight": 450,
+      "height": 415,
+      "name": "6",
+      "x": 1497
+    },
+    {
+      "frameX": -12,
+      "y": 858,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 475,
+      "frameHeight": 450,
+      "height": 407,
+      "name": "7",
+      "x": 1449
+    },
+    {
+      "frameX": -15,
+      "y": 453,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 475,
+      "frameHeight": 450,
+      "height": 406,
+      "name": "8",
+      "x": 1
+    },
+    {
+      "frameX": -19,
+      "y": 861,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 462,
+      "frameHeight": 450,
+      "height": 403,
+      "name": "9",
+      "x": 1
+    },
+    {
+      "frameX": -36,
+      "y": 442,
+      "frameY": 0,
+      "frameWidth": 500,
+      "width": 452,
+      "frameHeight": 450,
+      "height": 431,
+      "name": "10",
+      "x": 995
+    },
+    {
+      "frameX": -64,
+      "y": 875,
+      "frameY": -4,
+      "frameWidth": 500,
+      "width": 415,
+      "frameHeight": 450,
+      "height": 369,
+      "name": "11",
+      "x": 895
+    },
+    {
+      "frameX": -66,
+      "y": 865,
+      "frameY": -11,
+      "frameWidth": 500,
+      "width": 428,
+      "frameHeight": 450,
+      "height": 360,
+      "name": "12",
+      "x": 465
+    },
+    {
+      "frameX": -149,
+      "y": 1227,
+      "frameY": -21,
+      "frameWidth": 500,
+      "width": 345,
+      "frameHeight": 450,
+      "height": 353,
+      "name": "13",
+      "x": 465
+    },
+    {
+      "frameX": -148,
+      "y": 1266,
+      "frameY": -20,
+      "frameWidth": 500,
+      "width": 346,
+      "frameHeight": 450,
+      "height": 350,
+      "name": "14",
+      "x": 1
+    },
+    {
+      "frameX": -147,
+      "y": 1246,
+      "frameY": -30,
+      "frameWidth": 500,
+      "width": 291,
+      "frameHeight": 450,
+      "height": 321,
+      "name": "15",
+      "x": 812
+    },
+    {
+      "frameX": -217,
+      "y": 453,
+      "frameY": -32,
+      "frameWidth": 500,
+      "width": 41,
+      "frameHeight": 450,
+      "height": 298,
+      "name": "16",
+      "x": 949
+    },
+    {
+      "frameX": -239,
+      "y": 442,
+      "frameY": -43,
+      "frameWidth": 500,
+      "width": 15,
+      "frameHeight": 450,
+      "height": 270,
+      "name": "17",
+      "x": 1449
+    },
+    {
+      "width": 500,
+      "y": 1,
+      "height": 450,
+      "name": "18",
+      "x": 1
+    }
+  ],
+  "width": 2048,
+  "height": 2048,
+  "name": "thunder",
+  "imagePath": "thunder_tex.png"
+}

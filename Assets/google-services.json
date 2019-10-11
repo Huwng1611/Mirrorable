@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "405739559217",
+    "firebase_url": "https://testfirebaseanalytics-e7de0.firebaseio.com",
+    "project_id": "testfirebaseanalytics-e7de0",
+    "storage_bucket": "testfirebaseanalytics-e7de0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405739559217:android:d592837bfbda452ae9b810",
+        "android_client_info": {
+          "package_name": "com.Bababibo.ProductName"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405739559217-vd30rd0m3ingedjid1c0pcipq2fq479t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmt24ZQVI-4IofyZqKy736ndQfC6VAcUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405739559217-vd30rd0m3ingedjid1c0pcipq2fq479t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
