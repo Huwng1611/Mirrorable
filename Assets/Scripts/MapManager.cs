@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour {
+public class MapManager : MonoBehaviour
+{
 
     public static MapManager mapManager;
     public GameObject[] map;
@@ -12,19 +13,17 @@ public class MapManager : MonoBehaviour {
     {
         mapManager = this;
     }
-    public void Start()
+
+    void Update()
     {
-       
-    }
-    void Update () {
-		if(CameraFollow.camerafollow.transform.position.x > xToGenMap - 21)
+        if (CameraFollow.camerafollow.transform.position.x > xToGenMap - 21)
         {
             GenMap();
         }
-	}
+    }
     private int index = 0;
     public void GenMap()
-    {      
+    {
         xToGenMap += 21f;
         map[index].transform.position = new Vector3(xToGenMap, 0, 0);
         index++;
@@ -50,5 +49,5 @@ public class MapManager : MonoBehaviour {
         //    currentMap = obj;
         //    obj.transform.position = new Vector3(xToGenMap, 0, 0);
         //}        
-    }  
+    }
 }

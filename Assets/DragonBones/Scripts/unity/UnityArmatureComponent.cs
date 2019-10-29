@@ -66,7 +66,7 @@ namespace DragonBones
         /// <language>zh_CN</language>
         SortByOrder
     }
-    public enum nameAnim { run, die, jump, atk, lonnhao, lonnhao2, dung, hoisinh, khien, lua, cong, hinhnom, set, damgio, xuyengiap, khiengio, skilloff, Resurrection, damgio1, damgio2, shield, nguyenrua1, nguyenrua2, trungdon, windShield, damgio3, animtion0 }
+    public enum nameAnim { run, die, jump, atk, lonnhao, lonnhao2, dung, hoisinh, khien, lua, cong, hinhnom, set, damgio, xuyengiap, khiengio, skilloff, Resurrection, damgio1, damgio2, shield, nguyenrua1, nguyenrua2, trungdon, windShield, damgio3, animtion0, dungim1, bay, chay }
 
     ///<inheritDoc/>
     [ExecuteInEditMode, DisallowMultipleComponent]
@@ -694,8 +694,8 @@ namespace DragonBones
                     _armature.animation.Play(animationName, _playTimes);
                 }
             }
-            
-            
+
+
         }
 
         void Start()
@@ -755,7 +755,7 @@ namespace DragonBones
 
         private void OpenCombineMeshs()
         {
-            if(this.isUGUI)
+            if (this.isUGUI)
             {
                 return;
             }
@@ -767,7 +767,7 @@ namespace DragonBones
                 cm = gameObject.AddComponent<UnityCombineMeshs>();
             }
             //
-            
+
             if (this._armature == null)
             {
                 return;
@@ -791,7 +791,7 @@ namespace DragonBones
             {
                 DestroyImmediate(cm);
             }
-            
+
             if (this._armature == null)
             {
                 return;

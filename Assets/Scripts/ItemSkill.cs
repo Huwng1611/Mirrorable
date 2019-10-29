@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSkill : MonoBehaviour {
+public class ItemSkill : MonoBehaviour
+{
 
     public int index;
     public Animator anim;
@@ -11,13 +12,14 @@ public class ItemSkill : MonoBehaviour {
     // Use this for initialization
 
     private float outCamera;
-	void OnEnable () {
+    void OnEnable()
+    {
         OnItemSkill();
 
         outCamera = 0.75f * GamePlay.gameplay.width;
     }
-	
-	public void OnItemSkill()
+
+    public void OnItemSkill()
     {
         index = Random.Range(0, 9);
         meshvovannenlaphaitatnodi.enabled = false;
@@ -29,8 +31,8 @@ public class ItemSkill : MonoBehaviour {
     public float smoothTime;
     private Vector3 velocity = Vector3.zero;
     public void Update()
-    {       
-        if(Mathf.Abs(transform.position.x - CameraFollow.camerafollow.transform.position.x) > GamePlay.gameplay.width * 1.5f)
+    {
+        if (Mathf.Abs(transform.position.x - CameraFollow.camerafollow.transform.position.x) > GamePlay.gameplay.width * 1.5f)
         {
             GamePlay.gameplay.RemoveItemSkill();
         }
@@ -45,7 +47,7 @@ public class ItemSkill : MonoBehaviour {
         {
             dir = -1;
         }
-        transform.position = new Vector3(CameraFollow.camerafollow.transform.position.x + Random.Range(GamePlay.gameplay.width, GamePlay.gameplay.width + 5), Random.Range(0, GamePlay.gameplay.height - 1f) * dir, 0);
+        transform.position = new Vector3(CameraFollow.camerafollow.transform.position.x + Random.Range(GamePlay.gameplay.width, GamePlay.gameplay.width + 5), Random.Range(0, GamePlay.gameplay.height - 2f) * dir, 0);
         transform.localScale = new Vector3(1, dir, 1);
     }
     private bool check;
@@ -60,14 +62,14 @@ public class ItemSkill : MonoBehaviour {
                 if (UIManager.ui.amountSkill < 5)
                 {
                     iTween.MoveTo(gameObject, iTween.Hash("position", new Vector3(CameraFollow.camerafollow.transform.position.x - GamePlay.gameplay.width, GamePlay.gameplay.height, 0), "time", 0.4f, "easetype", iTween.EaseType.easeInSine));
-                    iTween.ScaleTo(gameObject, iTween.Hash("scale", new Vector3(0.3f,0.3f,0.3f), "time", 0.4f, "easetype", iTween.EaseType.easeInSine));
+                    iTween.ScaleTo(gameObject, iTween.Hash("scale", new Vector3(0.3f, 0.3f, 0.3f), "time", 0.4f, "easetype", iTween.EaseType.easeInSine));
                     Invoke("AddSkill", 0.5f);
                 }
                 else
                 {
                     anim.Play("10");
                 }
-                coll.enabled = false;
+                //coll.enabled = false;
                 check = true;
             }
         }

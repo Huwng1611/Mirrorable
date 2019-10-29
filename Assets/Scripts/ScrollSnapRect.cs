@@ -7,7 +7,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Image))]
 [RequireComponent(typeof(Mask))]
 [RequireComponent(typeof(ScrollRect))]
-public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler {
+public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+{
 
     [Tooltip("Set starting page index - starting from 0")]
     public int startingPage = 0;
@@ -36,7 +37,7 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     private RectTransform _container;
 
     private bool _horizontal;
-    
+
     // number of pages in container
     private int _pageCount;
     private int _currentPage;
@@ -60,18 +61,24 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     private List<Image> _pageSelectionImages;
 
     //------------------------------------------------------------------------
-    void Start() {
+    void Start()
+    {
         _scrollRectComponent = GetComponent<ScrollRect>();
         _scrollRectRect = GetComponent<RectTransform>();
         _container = _scrollRectComponent.content;
         _pageCount = _container.childCount;
 
         // is it horizontal or vertical scrollrect
-        if (_scrollRectComponent.horizontal && !_scrollRectComponent.vertical) {
+        if (_scrollRectComponent.horizontal && !_scrollRectComponent.vertical)
+        {
             _horizontal = true;
-        } else if (!_scrollRectComponent.horizontal && _scrollRectComponent.vertical) {
+        }
+        else if (!_scrollRectComponent.horizontal && _scrollRectComponent.vertical)
+        {
             _horizontal = false;
-        } else {
+        }
+        else
+        {
             Debug.LogWarning("Confusing setting of horizontal/vertical direction. Default set to horizontal.");
             _horizontal = true;
         }
@@ -90,17 +97,20 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
         if (prevButton)
             prevButton.GetComponent<Button>().onClick.AddListener(() => { PreviousScreen(); });
-	}
+    }
 
     //------------------------------------------------------------------------
-    void Update() {
+    void Update()
+    {
         // if moving to target position
-        if (_lerp) {
+        if (_lerp)
+        {
             // prevent overshooting with values greater than 1
             float decelerate = Mathf.Min(decelerationRate * Time.deltaTime, 1f);
             _container.anchoredPosition = Vector2.Lerp(_container.anchoredPosition, _lerpTo, decelerate);
             // time to stop lerping?
-            if (Vector2.SqrMagnitude(_container.anchoredPosition - _lerpTo) < 0.25f) {
+            if (Vector2.SqrMagnitude(_container.anchoredPosition - _lerpTo) < 0.25f)
+            {
                 // snap to target and stop lerping
                 _container.anchoredPosition = _lerpTo;
                 _lerp = false;
@@ -109,7 +119,8 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             }
 
             // switches selection icon exactly to correct page
-            if (_showPageSelection) {
+            if (_showPageSelection)
+            {
                 SetPageSelection(GetNearestPage());
             }
         }
@@ -117,7 +128,8 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     //------------------------------------------------------------------------
     public bool check;
-    private void SetPagePositions() {
+    private void SetPagePositions()
+    {
         int width = 0;
         int height = 0;
         int offsetX = 0;
@@ -217,14 +229,16 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     }
 
     //------------------------------------------------------------------------
-    private void SetPage(int aPageIndex) {
+    private void SetPage(int aPageIndex)
+    {
         aPageIndex = Mathf.Clamp(aPageIndex, 0, _pageCount - 1);
         _container.anchoredPosition = _pagePositions[aPageIndex];
         _currentPage = aPageIndex;
     }
 
     //------------------------------------------------------------------------
-    private void LerpToPage(int aPageIndex) {
+    private void LerpToPage(int aPageIndex)
+    {
         aPageIndex = Mathf.Clamp(aPageIndex, 0, _pageCount - 1);
         _lerpTo = _pagePositions[aPageIndex];
         _lerp = true;
@@ -232,22 +246,29 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     }
 
     //------------------------------------------------------------------------
-    private void InitPageSelection() {
+    private void InitPageSelection()
+    {
         // page selection - only if defined sprites for selection icons
         _showPageSelection = unselectedPage != null && selectedPage != null;
-        if (_showPageSelection) {
+        if (_showPageSelection)
+        {
             // also container with selection images must be defined and must have exatly the same amount of items as pages container
-            if (pageSelectionIcons == null || pageSelectionIcons.childCount != _pageCount) {
+            if (pageSelectionIcons == null || pageSelectionIcons.childCount != _pageCount)
+            {
                 Debug.LogWarning("Different count of pages and selection icons - will not show page selection");
                 _showPageSelection = false;
-            } else {
+            }
+            else
+            {
                 _previousPageSelectionIndex = -1;
                 _pageSelectionImages = new List<Image>();
 
                 // cache all Image components into list
-                for (int i = 0; i < pageSelectionIcons.childCount; i++) {
+                for (int i = 0; i < pageSelectionIcons.childCount; i++)
+                {
                     Image image = pageSelectionIcons.GetChild(i).GetComponent<Image>();
-                    if (image == null) {
+                    if (image == null)
+                    {
                         Debug.LogWarning("Page selection icon at position " + i + " is missing Image component");
                     }
                     _pageSelectionImages.Add(image);
@@ -257,14 +278,17 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     }
 
     //------------------------------------------------------------------------
-    private void SetPageSelection(int aPageIndex) {
+    private void SetPageSelection(int aPageIndex)
+    {
         // nothing to change
-        if (_previousPageSelectionIndex == aPageIndex) {
+        if (_previousPageSelectionIndex == aPageIndex)
+        {
             return;
         }
-        
+
         // unselect old
-        if (_previousPageSelectionIndex >= 0) {
+        if (_previousPageSelectionIndex >= 0)
+        {
             _pageSelectionImages[_previousPageSelectionIndex].sprite = unselectedPage;
             _pageSelectionImages[_previousPageSelectionIndex].SetNativeSize();
         }
@@ -277,26 +301,31 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     }
 
     //------------------------------------------------------------------------
-    private void NextScreen() {
+    private void NextScreen()
+    {
         LerpToPage(_currentPage + 1);
     }
 
     //------------------------------------------------------------------------
-    private void PreviousScreen() {
+    private void PreviousScreen()
+    {
         LerpToPage(_currentPage - 1);
     }
 
     //------------------------------------------------------------------------
-    private int GetNearestPage() {
+    private int GetNearestPage()
+    {
         // based on distance from current position, find nearest page
         Vector2 currentPosition = _container.anchoredPosition;
 
         float distance = float.MaxValue;
         int nearestPage = _currentPage;
 
-        for (int i = 0; i < _pagePositions.Count; i++) {
+        for (int i = 0; i < _pagePositions.Count; i++)
+        {
             float testDist = Vector2.SqrMagnitude(currentPosition - _pagePositions[i]);
-            if (testDist < distance) {
+            if (testDist < distance)
+            {
                 distance = testDist;
                 nearestPage = i;
             }
@@ -306,7 +335,8 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     }
 
     //------------------------------------------------------------------------
-    public void OnBeginDrag(PointerEventData aEventData) {
+    public void OnBeginDrag(PointerEventData aEventData)
+    {
         // if currently lerping, then stop it as user is draging
         _lerp = false;
         // not dragging yet
@@ -314,25 +344,35 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     }
 
     //------------------------------------------------------------------------
-    public void OnEndDrag(PointerEventData aEventData) {
+    public void OnEndDrag(PointerEventData aEventData)
+    {
         // how much was container's content dragged
         float difference;
-        if (_horizontal) {
+        if (_horizontal)
+        {
             difference = _startPosition.x - _container.anchoredPosition.x;
-        } else {
-            difference = - (_startPosition.y - _container.anchoredPosition.y);
+        }
+        else
+        {
+            difference = -(_startPosition.y - _container.anchoredPosition.y);
         }
 
         // test for fast swipe - swipe that moves only +/-1 item
         if (Time.unscaledTime - _timeStamp < fastSwipeThresholdTime &&
             Mathf.Abs(difference) > fastSwipeThresholdDistance &&
-            Mathf.Abs(difference) < _fastSwipeThresholdMaxLimit) {
-            if (difference > 0) {
+            Mathf.Abs(difference) < _fastSwipeThresholdMaxLimit)
+        {
+            if (difference > 0)
+            {
                 NextScreen();
-            } else {
+            }
+            else
+            {
                 PreviousScreen();
             }
-        } else {
+        }
+        else
+        {
             // if not fast time, look to which page we got to
             LerpToPage(GetNearestPage());
         }
@@ -341,16 +381,21 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     }
 
     //------------------------------------------------------------------------
-    public void OnDrag(PointerEventData aEventData) {
-        if (!_dragging) {
+    public void OnDrag(PointerEventData aEventData)
+    {
+        if (!_dragging)
+        {
             // dragging started
             _dragging = true;
             // save time - unscaled so pausing with Time.scale should not affect it
             _timeStamp = Time.unscaledTime;
             // save current position of cointainer
             _startPosition = _container.anchoredPosition;
-        } else {
-            if (_showPageSelection) {
+        }
+        else
+        {
+            if (_showPageSelection)
+            {
                 SetPageSelection(GetNearestPage());
             }
         }

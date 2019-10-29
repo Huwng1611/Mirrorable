@@ -1,1 +1,64 @@
-{"imagePath":"arrow_tex.png","width":512,"SubTexture":[{"width":39,"y":180,"height":51,"name":"demo2_0007_chanp","x":360},{"width":39,"y":180,"height":51,"name":"demo2_0006_chantr","x":401},{"width":81,"y":1,"height":105,"name":"demo2_0003_than","x":307},{"width":90,"y":108,"height":70,"name":"demo2_0005_taytr","x":307},{"width":167,"y":1,"height":219,"name":"demo2_0004_cung","x":1},{"width":135,"y":1,"height":219,"name":"demo2_0000_dau","x":170},{"width":55,"y":1,"height":95,"name":"demo2_0002_tayp","x":390},{"width":51,"y":180,"height":56,"name":"demo2_0001_cauvai","x":307}],"height":256,"name":"arrow"}
+{
+  "width": 512,
+  "imagePath": "arrow_tex.png",
+  "height": 256,
+  "name": "arrow",
+  "SubTexture": [
+    {
+      "width": 39,
+      "y": 180,
+      "height": 51,
+      "name": "demo2_0007_chanp",
+      "x": 360
+    },
+    {
+      "width": 39,
+      "y": 180,
+      "height": 51,
+      "name": "demo2_0006_chantr",
+      "x": 401
+    },
+    {
+      "width": 81,
+      "y": 1,
+      "height": 105,
+      "name": "demo2_0003_than",
+      "x": 307
+    },
+    {
+      "width": 90,
+      "y": 108,
+      "height": 70,
+      "name": "demo2_0005_taytr",
+      "x": 307
+    },
+    {
+      "width": 167,
+      "y": 1,
+      "height": 219,
+      "name": "demo2_0004_cung",
+      "x": 1
+    },
+    {
+      "width": 135,
+      "y": 1,
+      "height": 219,
+      "name": "demo2_0000_dau",
+      "x": 170
+    },
+    {
+      "width": 55,
+      "y": 1,
+      "height": 95,
+      "name": "demo2_0002_tayp",
+      "x": 390
+    },
+    {
+      "width": 51,
+      "y": 180,
+      "height": 56,
+      "name": "demo2_0001_cauvai",
+      "x": 307
+    }
+  ]
+}

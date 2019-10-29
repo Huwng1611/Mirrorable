@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{3DAEAA5F-7355-2E8E-461B-03C29EB36712}</ProjectGuid>
+    <ProjectGuid>{C0359A19-DFB9-FCF2-7288-20F96E731E4B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -77,19 +77,19 @@
     <None Include="Assets\GoogleMobileAds\Editor\GoogleMobileAdsDependencies.xml" />
     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.125.0.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -338,70 +338,70 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Google.IOSResolver_v1.2.125.0">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.125.0.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.125.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.JarResolver_v1.2.125.0">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.125.0.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.125.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandler">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandlerImpl_v1.2.125.0">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.125.0.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.125.0.dll</HintPath>
     </Reference>
     <Reference Include="Facebook.Unity">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Facebook.Unity.Editor">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/FacebookSDK/Plugins/Editor/Facebook.Unity.Editor.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/FacebookSDK/Plugins/Editor/Facebook.Unity.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Facebook.Unity.Gameroom">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll</HintPath>
     </Reference>
     <Reference Include="FacebookNamedPipeClient">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/FacebookSDK/Plugins/Gameroom/FacebookNamedPipeClient.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/FacebookSDK/Plugins/Gameroom/FacebookNamedPipeClient.dll</HintPath>
     </Reference>
     <Reference Include="Facebook.Unity.Settings">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Editor">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Analytics">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/Firebase/Plugins/Firebase.Analytics.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/Firebase/Plugins/Firebase.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.App">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Platform">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.TaskExtension">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/Firebase/Plugins/Firebase.TaskExtension.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/Firebase/Plugins/Firebase.TaskExtension.dll</HintPath>
     </Reference>
     <Reference Include="Google.MiniJson">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Compat">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Tasks">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>E:/ProjectGameUnity/Archive/Archive/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>E:/ProjectGameUnity/Mirrorable/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.13f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -766,11 +766,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{0939667F-D6A9-D136-5CD5-B94220199D23}</Project>
+      <Project>{3F1220CB-4EC5-434B-2BE2-77612AEDABF7}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{D18054FD-3C0A-A7A0-E45E-095EEEC7B432}</Project>
+      <Project>{4AE82254-13DE-A169-55C7-170B1C708122}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
   </ItemGroup>

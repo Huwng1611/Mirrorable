@@ -142,6 +142,7 @@ public class AdmobManager : MonoBehaviour
     {
         if (subscribe)
         {
+            RequestBanner();
             // Called when an ad request has successfully loaded.
             bannerAd.OnAdLoaded += HandleOnAdLoaded;
             // Called when an ad request failed to load.

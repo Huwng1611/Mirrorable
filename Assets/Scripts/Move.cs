@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour {
+public class Move : MonoBehaviour
+{
 
     public Transform targetFollow;
 
@@ -14,7 +15,6 @@ public class Move : MonoBehaviour {
 
     public float smoothTime;
     private Vector3 velocity = Vector3.zero;
-
     public Transform checkGround;
     //[HideInInspector]
     public bool notAtEg;
@@ -22,17 +22,31 @@ public class Move : MonoBehaviour {
     public bool checkMove = true;
     public Hero herotmp;
     public Property property;
-  
+
     public void Awake()
     {
         dirScale = 1;
         herotmp = GetComponent<Hero>();
         property = GetComponent<Property>();
     }
+
+    /// <summary>
+    /// cần sửa cái này & những chỗ reference đến nó
+    /// </summary>
+    /// <param name="target"></param>
     public void SetTargetFollow(Transform target)
     {
         targetFollow = target;
+        //if (!target.gameObject.GetComponent<Property>().checkDie)
+        //{
+        //    targetFollow = target;
+        //}
+        //else
+        //{
+        //    SetTargetFollow(target.GetComponent<Move>().targetFollow);
+        //}
     }
+
     public void SetTransform()
     {
         int dirTmp = (int)GamePlay.gameplay.captain.transform.localScale.y;
@@ -47,7 +61,15 @@ public class Move : MonoBehaviour {
         transform.localScale = new Vector3(1, dirTmp, transform.localScale.z);
         checkChangeGravity = true;
         //transform.position = new Vector3(CameraFollow.camerafollow.transform.position.x - GamePlay.gameplay.width / 3, 0.38f * dirTmp, transform.position.z);
-        transform.position = GamePlay.gameplay.captain.transform.position;
+        //transform.position = GamePlay.gameplay.captain.transform.position;
+        if (gameObject.name.Contains("Drman"))
+        {
+            transform.position = new Vector3(GamePlay.gameplay.captain.transform.position.x, GamePlay.gameplay.captain.transform.position.y + 1f, GamePlay.gameplay.captain.transform.position.z);
+        }
+        else
+        {
+            transform.position = GamePlay.gameplay.captain.transform.position;
+        }
     }
     public void SetScale()
     {
@@ -66,7 +88,8 @@ public class Move : MonoBehaviour {
             indexAction = GamePlay.gameplay.indexAction;
         }
     }
-    void Update () {
+    void Update()
+    {
         if (!property.checkDie)
         {
             if (checkMove)
@@ -76,7 +99,7 @@ public class Move : MonoBehaviour {
                     if (!EnemyManager.enemymanager.checkFight)
                     {
                         transform.position = new Vector3(transform.position.x + Time.deltaTime * GamePlay.gameplay.speed, transform.position.y, transform.position.z);
-                        notAtEg = Physics2D.OverlapCircle(checkGround.position, 0.25f, GamePlay.gameplay.layerGround);
+                        notAtEg = Physics2D.OverlapCircle(checkGround.position, 1f, GamePlay.gameplay.layerGround);
                     }
                 }
                 else
@@ -99,16 +122,16 @@ public class Move : MonoBehaviour {
                             }
 
                         }
-
                     }
                 }
             }
             if (checkCalled)
             {
-                notAtEg = Physics2D.OverlapCircle(checkGround.position, 0.05f, GamePlay.gameplay.layerGround);
+                notAtEg = Physics2D.OverlapCircle(checkGround.position, 1f, GamePlay.gameplay.layerGround);
                 if (notAtEg)
                 {
                     if (property.enemy == null)
+                    {
                         if (dir == -1)
                         {
                             if (transform.position.x > target.position.x)
@@ -119,6 +142,7 @@ public class Move : MonoBehaviour {
                             if (transform.position.x < target.position.x)
                                 transform.position = new Vector3(transform.position.x + dir * Time.deltaTime * GamePlay.gameplay.speed, transform.position.y, transform.position.z);
                         }
+                    }
                 }
                 else
                 {
@@ -133,8 +157,18 @@ public class Move : MonoBehaviour {
                 }
             }
             if (checkChangeGravity)
-            {              
+            {
+                //if (!EnemyManager.enemymanager.checkFight)
+                //{
                 herotmp.OFFBox();
+                //}
+                notAtEg = Physics2D.OverlapCircle(checkGround.position, 1f, GamePlay.gameplay.layerGround);
+                if (transform.position.y * transform.localScale.y < 0)
+                {
+                    herotmp.OnBox();
+                    transform.position = new Vector3(transform.position.x, -transform.position.y, transform.position.z);
+                    checkChangeGravity = false;
+                }
                 if (checkDown)
                 {
                     if (transform.position.y < 0)
@@ -159,10 +193,10 @@ public class Move : MonoBehaviour {
         }
         else
         {
-            notAtEg = Physics2D.OverlapCircle(checkGround.position, 0.25f, GamePlay.gameplay.layerGround);
+            notAtEg = Physics2D.OverlapCircle(checkGround.position, 0.5f, GamePlay.gameplay.layerGround);
             if (!checkDown)
             {
-                if(transform.position.y <= 0)
+                if (transform.position.y <= 0)
                 {
                     rb.gravityScale = 0;
                     rb.velocity = Vector2.zero;
@@ -178,17 +212,20 @@ public class Move : MonoBehaviour {
             }
         }
     }
-    [HideInInspector]
+
+
+    //[HideInInspector]
     public bool checkChangeGravity;
     // [HideInInspector]
     public bool checkCalled;
     // [HideInInspector]
     public Transform target;
-    private int dir;
-    [HideInInspector]
+    public int dir;
+    //[HideInInspector]
     public bool checkCall;
+
     public void MoveIfCalled()
-    {     
+    {
         if (!checkCall)
         {
             if (gameObject.activeInHierarchy)
@@ -206,7 +243,7 @@ public class Move : MonoBehaviour {
                 if (target.localScale.y > 0)
                 {
                     if (checkDown)
-                    {                       
+                    {
                         herotmp.PlayAnim("flip");
                         herotmp.ColorUp();
                     }
@@ -222,9 +259,9 @@ public class Move : MonoBehaviour {
                     checkDown = true;
                 }
                 transform.localScale = new Vector3(dir, target.localScale.y, 1);
-                herotmp.property.textLevel.transform.localScale = new Vector3(dir, target.localScale.y, 1);
+                herotmp.property.textLevel.transform.localScale = new Vector3(1, target.localScale.y, 1);
                 //herotmp.property.collCheckGround.enabled = true;
-               // herotmp.property.coll.enabled = true;
+                // herotmp.property.coll.enabled = true;
                 dirScale = (int)target.localScale.y;
                 checkChangeGravity = true;
             }
@@ -237,7 +274,7 @@ public class Move : MonoBehaviour {
         checkMove = true;
     }
     public void StopMove()
-    {    
+    {
         checkMove = false;
     }
     //[HideInInspector]
@@ -247,8 +284,8 @@ public class Move : MonoBehaviour {
     public bool checkAction;
 
     public Rigidbody2D rb;
-    
- 
+
+
     public void Jump()
     {
         int dir;
@@ -260,9 +297,9 @@ public class Move : MonoBehaviour {
         {
             dir = -1;
         }
-        rb.velocity = new Vector2(0, GamePlay.gameplay.jumpHigh*dir);
+        rb.velocity = new Vector2(0, GamePlay.gameplay.jumpHigh * dir);
         herotmp.PlayAnim("jump");
-        NextAction();       
+        NextAction();
     }
     [HideInInspector]
     public int dirScale = 1;
@@ -276,7 +313,7 @@ public class Move : MonoBehaviour {
         }
         else
         {
-            dirScale = -1;         
+            dirScale = -1;
             checkDown = true;
             //herotmp.ColorDown();
         }
@@ -284,7 +321,8 @@ public class Move : MonoBehaviour {
         herotmp.property.SetScaleTextLevel(dirScale);
         transform.localScale = new Vector3(1, dirScale, 1);
         checkChangeGravity = true;
-        NextAction();      
+        //rb.gravityScale *= -1;
+        NextAction();
     }
     public void NextAction()
     {
@@ -292,14 +330,16 @@ public class Move : MonoBehaviour {
         {
             GamePlay.gameplay.action[indexAction] = 0;
             GamePlay.gameplay.indexAction++;
-            if (GamePlay.gameplay.indexAction >= 5)
+            //if (GamePlay.gameplay.indexAction >= 5)
+            if (GamePlay.gameplay.indexAction >= GamePlay.gameplay.hero.Length)
             {
                 GamePlay.gameplay.indexAction = 0;
             }
-           
+
         }
         indexAction++;
-        if (indexAction >= 5)
+        //if (indexAction >= 5)
+        if (indexAction >= GamePlay.gameplay.hero.Length)
         {
             indexAction = 0;
         }
@@ -314,5 +354,5 @@ public class Move : MonoBehaviour {
 
     }
 
-  
+
 }

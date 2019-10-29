@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using DragonBones;
 using UnityEngine;
 
-public class Property : MonoBehaviour {
+public class Property : MonoBehaviour
+{
 
     public int index;
     public int level;
@@ -13,19 +14,29 @@ public class Property : MonoBehaviour {
     public float maxArmorRange;
     public float exp;
 
-   [HideInInspector]
+    [HideInInspector]
     public float currentAttack;
-   [HideInInspector]
+    [HideInInspector]
     public float currentHp;
-   [HideInInspector]
+    [HideInInspector]
     public float currentArmorMelee;
-   [HideInInspector]
+    [HideInInspector]
     public float currentArmorRange;
     //[HideInInspector]
-    
 
     public SpriteRenderer healthBar;
+    /// <summary>
+    /// ảnh background hiển thị level
+    /// </summary>
+    public SpriteRenderer bgLevel;
+    /// <summary>
+    /// số level của nhân vật
+    /// </summary>
     public TextMesh textLevel;
+    /// <summary>
+    /// số level của nhân vật trước khi levelUp
+    /// </summary>
+    public int prevLevel;
 
     public BoxCollider2D coll;
     public BoxCollider2D collCheckGround;
@@ -79,7 +90,39 @@ public class Property : MonoBehaviour {
     public void SetScaleTextLevel(int dir)
     {
         textLevel.transform.localScale = new Vector3(1, dir, 1);
+        SetTextLevel();
     }
+
+    /// <summary>
+    /// cho background level to nhỏ theo số level
+    /// </summary>
+    private void FixSizeTextLevel()
+    {
+        string firstLv = "1";
+        int diff = level.ToString().Length - firstLv.Length;
+
+        if (diff > 0 && prevLevel.ToString().Length < level.ToString().Length)
+        {
+            bgLevel.transform.localScale += Vector3.one * diff * 0.2f;
+            return;
+        }
+        else if (diff > 0 && prevLevel.ToString().Length > level.ToString().Length)
+        {
+            bgLevel.transform.localScale -= Vector3.one * diff * 0.2f;
+            return;
+        }
+        else if (diff > 0 && prevLevel.ToString().Length == level.ToString().Length)
+        {
+            return;
+        }
+        else if (diff <= 0)
+        {
+            bgLevel.transform.localScale = Vector3.one;
+            return;
+        }
+        //Debug.Log("<color=green>BG color size = " + bgLevel.size + "</color>");
+    }
+
     public float damage;
     public void CaculatorDamage()
     {
@@ -111,32 +154,33 @@ public class Property : MonoBehaviour {
             {
                 damage = level;
             }
-        }      
+        }
     }
     // [HideInInspector]
     public Property enemy;
     public List<Property> listFighter;
     public void Attack()
     {
-        StopAttack();      
+        StopAttack();
         if (heroTemp != null)
         {
             heroTemp.move.checkCall = true;
             heroTemp.move.checkChangeGravity = false;
             heroTemp.OnBox();
-        }      
+        }
         InvokeRepeating("AttackToEnemy", 0.5f, 0.5f);
     }
     public void AttackToEnemy()
     {
         int dirScale = 1;
         if (enemy != null)
-        {        
+        {
             if (enemy.transform.position.x < transform.position.x)
             {
                 dirScale = -1;
             }
             transform.localScale = new Vector3(dirScale, transform.localScale.y, transform.localScale.z);
+            textLevel.transform.localScale = new Vector3(dirScale, textLevel.transform.localScale.y, textLevel.transform.localScale.z);
         }
 
         if (index != 2)
@@ -150,7 +194,7 @@ public class Property : MonoBehaviour {
 
                     GameObject objIns;
                     if (index == 3)
-                    {                      
+                    {
                         objIns = GamePlay.gameplay.arrow;
                     }
                     else
@@ -172,7 +216,7 @@ public class Property : MonoBehaviour {
                     float flyTime = 0.5f * (distanceTmp / GamePlay.gameplay.width);
                     if (heroTemp != null)
                     {
-                        iTween.MoveTo(arrowTmp, iTween.Hash("position", new Vector3(enemy.transform.position.x + Random.Range(-0.2f,0.2f), enemy.transform.position.y + heroTemp.move.dirScale * 1, 0), "time", flyTime));
+                        iTween.MoveTo(arrowTmp, iTween.Hash("position", new Vector3(enemy.transform.position.x + Random.Range(-0.2f, 0.2f), enemy.transform.position.y + heroTemp.move.dirScale * 1, 0), "time", flyTime));
                     }
                     else
                     {
@@ -188,25 +232,25 @@ public class Property : MonoBehaviour {
                     // k delay
                     DelayAttack();
                 }
-                
-               
+
+
             }
         }
         // danh lan
         else
         {
-            
+
             arrayEnemyToAttackAoe = new Collider2D[0];
 
             if (heroTemp != null)
             {
-                arrayEnemyToAttackAoe = Physics2D.OverlapBoxAll(new Vector3(transform.position.x, transform.position.y + heroTemp.move.dirScale * 0.65f), new Vector2(heroTemp.ShortRange + 1 , 0.5f), 0, heroTemp.layerEnemy);
+                arrayEnemyToAttackAoe = Physics2D.OverlapBoxAll(new Vector3(transform.position.x, transform.position.y + heroTemp.move.dirScale * 0.65f), new Vector2(heroTemp.ShortRange + 1, 0.5f), 0, heroTemp.layerEnemy);
             }
             else
             {
                 arrayEnemyToAttackAoe = Physics2D.OverlapBoxAll(new Vector3(transform.position.x, transform.position.y + enemyTemp.dirScale * 0.65f), new Vector2(enemyTemp.range + 1, 0.5f), 0, enemyTemp.layerEnemy);
             }
-
+            //hero đánh gần
             if (arrayEnemyToAttackAoe.Length > 0)
             {
                 for (int i = 0; i < arrayEnemyToAttackAoe.Length; i++)
@@ -227,6 +271,7 @@ public class Property : MonoBehaviour {
                     }
                 }
             }
+            //hero đánh xa
             else
             {
                 if (enemy != null)
@@ -251,7 +296,7 @@ public class Property : MonoBehaviour {
                 }
                 else
                 {
-                   // print(gameObject.name);
+                    // print(gameObject.name);
                     if (heroTemp != null)
                     {
                         StopAttack();
@@ -378,14 +423,16 @@ public class Property : MonoBehaviour {
         if (level <= 1)
         {
             level = 1;
-           // Disable();
+            // Disable();
         }
         textLevel.text = level.ToString();
+        FixSizeTextLevel();
     }
     public void LevelUp(int amount)
     {
+        prevLevel = level;
         level += amount;
-        if(level > GamePlay.gameplay.maxLevelHero[index])
+        if (level > GamePlay.gameplay.maxLevelHero[index])
         {
             GamePlay.gameplay.maxLevelHero[index] = level;
         }
@@ -413,10 +460,14 @@ public class Property : MonoBehaviour {
         {
             if (heroTemp != null)
             {
-                GamePlay.gameplay.heroAmount++;
-                if(GamePlay.gameplay.heroAmount >= 5)
+                //GamePlay.gameplay.heroAmount++;
+                //if (GamePlay.gameplay.heroAmount >= 5)
+                //{
+                //    GamePlay.gameplay.heroAmount = 5;
+                //}
+                if (GamePlay.gameplay.heroAmount >= GamePlay.gameplay.hero.Length)
                 {
-                    GamePlay.gameplay.heroAmount = 5;
+                    GamePlay.gameplay.heroAmount = GamePlay.gameplay.hero.Length;
                 }
             }
             if (checkRespawnToSetDefaulProperty)
@@ -428,9 +479,9 @@ public class Property : MonoBehaviour {
                 SetDefault();
             }
             checkIndexEnemy = false;
-            Enable();           
+            Enable();
         }
-        
+
         //Invoke("Enable", 0.05f);
     }
     public void Enable()
@@ -440,12 +491,12 @@ public class Property : MonoBehaviour {
         checkIndexEnemy = false;
 
         if (GamePlay.checkStart)
-        {            
+        {
             coll.enabled = true;
             collCheckGround.enabled = true;
             if (heroTemp != null)
             {
-                for(int i =0; i<heroTemp.skillEffect.Length - 1; i++)
+                for (int i = 0; i < heroTemp.skillEffect.Length - 1; i++)
                 {
                     heroTemp.skillEffect[i].SetActive(false);
                 }
@@ -466,9 +517,13 @@ public class Property : MonoBehaviour {
                 {
                     int i = 1;
                     int j = 1;
-                    if (i < 4)
+                    //int i = 0;
+                    //int j = 0;
+                    //if (i < 4)
+                    if (i < GamePlay.gameplay.hero.Length - 1)
                     {
                         if (heroTemp.index + i < GamePlay.gameplay.hero.Length)
+                        {
                             while (!GamePlay.gameplay.hero[heroTemp.index + i].gameObject.activeInHierarchy)
                             {
                                 i++;
@@ -477,10 +532,13 @@ public class Property : MonoBehaviour {
                                     break;
                                 }
                             }
+                        }
                     }
-                    if (j < 4)
+                    //if (j < 4)
+                    if (j < GamePlay.gameplay.hero.Length - 1)
                     {
                         if (heroTemp.index - j < GamePlay.gameplay.hero.Length - 1 && heroTemp.index - j >= 0)
+                        {
                             while (!GamePlay.gameplay.hero[heroTemp.index - j].gameObject.activeInHierarchy)
                             {
                                 j++;
@@ -489,6 +547,7 @@ public class Property : MonoBehaviour {
                                     break;
                                 }
                             }
+                        }
                     }
                     if (heroTemp.index - j < GamePlay.gameplay.hero.Length && heroTemp.index - j >= 0)
                         heroTemp.move.SetTargetFollow(GamePlay.gameplay.hero[heroTemp.index - j].transform);
@@ -499,10 +558,14 @@ public class Property : MonoBehaviour {
                 heroTemp.PlayAnim("run");
 
                 GamePlay.gameplay.numberOfHero++;
-                
-                if (GamePlay.gameplay.heroAmount >= 5)
+                //if (GamePlay.gameplay.heroAmount >= 5)
+                //{
+                //    GamePlay.gameplay.heroAmount = 5;
+                //}
+
+                if (GamePlay.gameplay.heroAmount >= GamePlay.gameplay.hero.Length)
                 {
-                    GamePlay.gameplay.heroAmount = 5;
+                    GamePlay.gameplay.heroAmount = GamePlay.gameplay.hero.Length;
                 }
                 if (GamePlay.gameplay.heroAmount > 0)
                 {
@@ -519,14 +582,14 @@ public class Property : MonoBehaviour {
             }
         }
         SetTextLevel();
-        
+
         //SetScaleTextLevel();
-        for(int i = 0; i < sprSkill.Length; i++)
+        for (int i = 0; i < sprSkill.Length; i++)
         {
             sprSkill[i].enabled = false;
         }
         enemy = null;
-      
+
     }
 
     public void OffSkillEffectRes()
@@ -540,7 +603,7 @@ public class Property : MonoBehaviour {
         if (!checkDie)
         {
             checkDie = true;
-            
+
             for (int i = 0; i < listFighter.Count; i++)
             {
                 listFighter[i].enemy = null;
@@ -553,12 +616,12 @@ public class Property : MonoBehaviour {
             StopAttack();
             coll.enabled = false;
             collCheckGround.enabled = false;
-           
+
             // la quan ta Radiant
             if (heroTemp != null)
             {
                 heroTemp.PlayAnim("die");
-                if(heroTemp.move.notAtEg)
+                if (heroTemp.move.notAtEg)
                     heroTemp.move.rb.gravityScale = 0;
                 GamePlay.gameplay.heroAmount--;
                 if (GamePlay.gameplay.heroAmount <= 0)
@@ -567,14 +630,15 @@ public class Property : MonoBehaviour {
                 }
                 heroTemp.move.rb.velocity = Vector2.zero;
                 heroTemp.move.checkChangeGravity = false;
-                
+
                 // la quan ta Radiant
                 if (heroTemp != null)
                 {
                     // neu la captain
                     if (heroTemp.move.checkCaptain)
                     {
-                        for (int i = 0; i < 5; i++)
+                        //for (int i = 0; i < 5; i++)
+                        for (int i = 0; i < GamePlay.gameplay.hero.Length; i++)
                         {
                             if (!GamePlay.gameplay.hero[i].property.checkDie)
                             {
@@ -583,9 +647,11 @@ public class Property : MonoBehaviour {
                             }
                             else
                             {
-                                if (i == 4)
+                                //if (i == 4)
+                                if (i == GamePlay.gameplay.hero.Length - 1)
                                 {
-                                    Invoke("GameOver", 1);
+                                    StartCoroutine(WaitforPigRunning(GamePlay.gameplay.currentPig));
+                                    //Invoke("GameOver", 2f);
                                 }
                             }
                         }
@@ -596,7 +662,7 @@ public class Property : MonoBehaviour {
                     {
                         if (heroTemp.index > 0)
                         {
-                            for (int i = 4; i >= 0; i--)
+                            for (int i = GamePlay.gameplay.hero.Length - 1; i >= 0; i--)
                             {
                                 if (!GamePlay.gameplay.hero[i].property.checkDie)
                                 {
@@ -607,22 +673,24 @@ public class Property : MonoBehaviour {
                         }
                     }
 
-                    else if (heroTemp.index > 0 && heroTemp.index < 4)
+                    //else if (heroTemp.index > 0 && heroTemp.index < 4)
+                    else if (heroTemp.index > 0 && heroTemp.index < GamePlay.gameplay.hero.Length - 1)
                     {
                         int i = 1;
                         int j = 1;
-                        if (i < 4)
+                        if (i < GamePlay.gameplay.hero.Length - 1)
                         {
                             while (GamePlay.gameplay.hero[heroTemp.index + i].property.checkDie)
                             {
                                 i++;
-                                if (heroTemp.index + i >= 4)
+                                if (heroTemp.index + i >= GamePlay.gameplay.hero.Length - 1)
                                 {
                                     break;
                                 }
                             }
                         }
-                        if (j < 4)
+                        //if (j < 4)
+                        if (j < GamePlay.gameplay.hero.Length - 1)
                         {
                             while (GamePlay.gameplay.hero[heroTemp.index - j].property.checkDie)
                             {
@@ -633,9 +701,10 @@ public class Property : MonoBehaviour {
                                 }
                             }
                         }
-                        if (heroTemp.index + i >= 0 && heroTemp.index + i <= 4 && heroTemp.index - j >= 0 && heroTemp.index - j <= 4)
+                        if (heroTemp.index + i >= 0 && heroTemp.index + i <= GamePlay.gameplay.hero.Length - 1 && heroTemp.index - j >= 0 && heroTemp.index - j <= GamePlay.gameplay.hero.Length - 1)
                         {
                             GamePlay.gameplay.hero[heroTemp.index + i].move.SetTargetFollow(GamePlay.gameplay.hero[heroTemp.index - j].transform);
+                            //GamePlay.gameplay.hero[heroTemp.index + i].move.SetTargetFollow(heroTemp.move.targetFollow.transform);
                         }
                     }
                 }
@@ -681,7 +750,7 @@ public class Property : MonoBehaviour {
         Enable();
         checkDie = false;
         CancelInvoke("WaitToDisable");
-        heroTemp.move.SetTransform();
+        //heroTemp.move.SetTransform();
         if (heroTemp.move.checkDown)
         {
             SetScaleTextLevel(-1);
@@ -690,6 +759,7 @@ public class Property : MonoBehaviour {
         {
             SetScaleTextLevel(1);
         }
+        GamePlay.gameplay.heroAmount++;
     }
 
     public void WaitToDisable()
@@ -698,39 +768,135 @@ public class Property : MonoBehaviour {
     }
     private void OnDisable()
     {
+        //Disable();
         Hero heroTemp = GetComponent<Hero>();
         checkDie = true;
         level = 1;
-      
+        //Disable();
 
         if (checkCurse)
         {
             cruseEffect.SetActive(false);
-        }       
+        }
+        // la quan ta Radiant
+        if (heroTemp != null)
+        {
+            // neu la captain
+            if (heroTemp.move.checkCaptain)
+            {
+                //for (int i = 0; i < 5; i++)
+                for (int i = 0; i < GamePlay.gameplay.hero.Length; i++)
+                {
+                    if (!GamePlay.gameplay.hero[i].property.checkDie)
+                    {
+                        //GamePlay.gameplay.SetCaptain(GamePlay.gameplay.hero[i]);
+                        break;
+                    }
+                    else
+                    {
+                        //if (i == 4)
+                        if (i == GamePlay.gameplay.hero.Length - 1)
+                        {
+                            //Invoke("GameOver", 1f);
+                            GameOver();
+                        }
+                    }
+                }
+
+            }
+            // neu la lastHero
+            else if (heroTemp.move.checkEnd)
+            {
+                if (heroTemp.index > 0)
+                {
+                    for (int i = GamePlay.gameplay.hero.Length - 1; i >= 0; i--)
+                    {
+                        if (!GamePlay.gameplay.hero[i].property.checkDie)
+                        {
+                            GamePlay.gameplay.SetLastHero(GamePlay.gameplay.hero[i]);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //else if (heroTemp.index > 0 && heroTemp.index < 4)
+            else if (heroTemp.index > 0 && heroTemp.index < GamePlay.gameplay.hero.Length - 1)
+            {
+                int i = 1;
+                int j = 1;
+                if (i < GamePlay.gameplay.hero.Length - 1)
+                {
+                    while (GamePlay.gameplay.hero[heroTemp.index + i].property.checkDie)
+                    {
+                        i++;
+                        if (heroTemp.index + i >= GamePlay.gameplay.hero.Length - 1)
+                        {
+                            break;
+                        }
+                    }
+                }
+                //if (j < 4)
+                if (j < GamePlay.gameplay.hero.Length - 1)
+                {
+                    while (GamePlay.gameplay.hero[heroTemp.index - j].property.checkDie)
+                    {
+                        j++;
+                        if (heroTemp.index - j <= 0)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (heroTemp.index + i >= 0 && heroTemp.index + i <= GamePlay.gameplay.hero.Length - 1 && heroTemp.index - j >= 0 && heroTemp.index - j <= GamePlay.gameplay.hero.Length - 1)
+                {
+                    GamePlay.gameplay.hero[heroTemp.index + i].move.SetTargetFollow(GamePlay.gameplay.hero[heroTemp.index - j].transform);
+                    //GamePlay.gameplay.hero[heroTemp.index + i].move.SetTargetFollow(heroTemp.move.targetFollow.transform);
+                }
+            }
+        }
     }
     private bool checkIndexEnemy;
 
     public void GameOver()
-    { 
+    {
         //UIManager.ui.GameOver();
+        GamePlay.gameplay.isGameOver = true;
         UIManager.ui.ResetGameIfWatchVideoAds();
+    }
+
+    /// <summary>
+    /// con lợn quay đầu chạy khi thua
+    /// </summary>
+    /// <param name="pig"></param>
+    /// <returns></returns>
+    IEnumerator WaitforPigRunning(PigController pig)
+    {
+        float time = 0f;
+        while (time < 1f)
+        {
+            time += Time.deltaTime;
+            pig.transform.GetChild(0).transform.rotation = Quaternion.Lerp(pig.transform.GetChild(0).transform.rotation, Quaternion.Euler(0, 180, 0), Time.deltaTime * 5f);
+            pig.transform.position = new Vector3(pig.transform.position.x + Time.deltaTime * -3f, pig.transform.position.y, pig.transform.position.z);
+            yield return 0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.gameObject.tag == "Die")
+        if (coll.gameObject.tag == "Die")
         {
             Disable();
             Animator anim = coll.GetComponent<Animator>();
-            if(anim != null)
+            if (anim != null)
                 anim.Play("OffAnim");
             else
             {
                 BoxCollider2D box = coll.GetComponent<BoxCollider2D>();
-                if(box!=null)
+                if (box != null)
                     box.enabled = false;
             }
-        }      
+        }
         else if (coll.gameObject.tag == "CauDa")
         {
             coll.GetComponent<Animator>().Play("Fire");
@@ -738,11 +904,11 @@ public class Property : MonoBehaviour {
             if (!heroTemp.move.checkDown)
             {
                 dirCauDa = 1;
-            }                       
+            }
             heroTemp.move.rb.velocity = new Vector2(0, dirCauDa * 25);
             Invoke("Disable", 1);
         }
-        else if (coll.gameObject.tag == "WaterFall" )
+        else if (coll.gameObject.tag == "WaterFall")
         {
             if (!checkWaterFall)
             {
@@ -755,16 +921,11 @@ public class Property : MonoBehaviour {
     bool checkWaterFall;
     private void OnTriggerExit2D(Collider2D coll)
     {
-        if(coll.gameObject.tag == "WaterFall")
+        if (coll.gameObject.tag == "WaterFall")
         {
             checkWaterFall = false;
         }
     }
-  
-    //private void OnParticleCollision(GameObject other)
-    //{
-        
-    //}
 
     public void OnHoDoc()
     {
@@ -779,27 +940,19 @@ public class Property : MonoBehaviour {
         CancelInvoke("DamePerSecond");
     }
 
-
-
-
-
-
-
-
-
-
     // ---------------------- **SKILL** -------------------------
     public SpriteRenderer[] sprSkill;
-    private int[] indexSkill = new int[5];
-    
-    //  Shield
+
+    /// <summary>
+    /// giáp chống sát thương cận chiến
+    /// </summary>
     float armorShield;
     public void Shield(float amount)
     {
         CancelInvoke("EndShield");
         armorShield = amount;
         currentArmorMelee = maxArmorMelee + amount;
-        Invoke("EndShield",10);
+        Invoke("EndShield", 10);
         sprSkill[0].enabled = true;
         heroTemp.skillEffect[0].SetActive(true);
     }
@@ -812,6 +965,9 @@ public class Property : MonoBehaviour {
     }
 
     // Bloodlust
+    /// <summary>
+    /// hút máu
+    /// </summary>
     float damageBloodlust;
     public void Bloodlust(float amount)
     {
@@ -821,7 +977,7 @@ public class Property : MonoBehaviour {
         Invoke("EndBloodlust", 10);
         sprSkill[1].enabled = true;
         heroTemp.skillEffect[1].SetActive(true);
-        Invoke("OffEffectBloodlust",0.55f);
+        Invoke("OffEffectBloodlust", 0.55f);
     }
     public void OffEffectBloodlust()
     {
@@ -842,8 +998,8 @@ public class Property : MonoBehaviour {
     {
         CancelInvoke("EndCurse");
         cruseEffect.SetActive(true);
-        cruse = maxAttack - maxAttack*amount;
-        currentAttack = maxAttack * amount;       
+        cruse = maxAttack - maxAttack * amount;
+        currentAttack = maxAttack * amount;
         Invoke("EndCurse", 10);
         sprSkill[0].enabled = true;
         checkCurse = true;
@@ -862,6 +1018,10 @@ public class Property : MonoBehaviour {
     float armorpiercingRange;
     float armorpiercingMeLee;
     public GameObject skillEffect;
+    /// <summary>
+    /// xuyên giáp
+    /// </summary>
+    /// <param name="time"></param>
     public void ArmorPiercing(float time)
     {
         CancelInvoke("EndArmorPiercing");
@@ -888,6 +1048,9 @@ public class Property : MonoBehaviour {
     }
 
     //FireShield
+    /// <summary>
+    /// khiên gió tăng giáp chặn sát thương đánh xa
+    /// </summary>
     float armorWind;
     public void Wind(float amount)
     {
@@ -927,7 +1090,7 @@ public class Property : MonoBehaviour {
             else
             {
                 currentHp = maxHp;
-            }          
+            }
         }
         else
         {
@@ -937,7 +1100,7 @@ public class Property : MonoBehaviour {
             }
             else
             {
-                amount = amount - (maxHp - currentHp);
+                amount -= (maxHp - currentHp);
                 currentHp = maxHp;
                 if (level < GamePlay.gameplay.maxLevelHero[index])
                 {
@@ -948,7 +1111,7 @@ public class Property : MonoBehaviour {
                     if (amount > 0)
                     {
                         int leveltmp = (int)(amount / maxHp);
-                        amount = amount - maxHp * leveltmp;
+                        amount -= maxHp * leveltmp;
                         if (leveltmp >= GamePlay.gameplay.maxLevelHero[index] - level)
                         {
                             leveltmp = GamePlay.gameplay.maxLevelHero[index] - level;
@@ -961,12 +1124,12 @@ public class Property : MonoBehaviour {
         }
         SetHealthBar();
         heroTemp.skillEffect[4].SetActive(true);
-        Invoke("OffEffectResurrection",1.6f);
+        Invoke("OffEffectResurrection", 1.6f);
     }
     public void OffEffectResurrection()
     {
         heroTemp.skillEffect[4].SetActive(false);
 
     }
-    
+
 }

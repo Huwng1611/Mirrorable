@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : MonoBehaviour {
+public class Hero : MonoBehaviour
+{
     //[HideInInspector]
     public Property property;
     //[HideInInspector]
@@ -19,18 +20,18 @@ public class Hero : MonoBehaviour {
         property = gameObject.GetComponent<Property>();
         move = gameObject.GetComponent<Move>();
     }
-   // [HideInInspector]
+    // [HideInInspector]
     public Collider2D[] tempCollider;
-    [HideInInspector]
+    //[HideInInspector]
     public int layerEnemy;
-    [HideInInspector]
+    //[HideInInspector]
     public BoxCollider2D boxCheckGround;
     private void Start()
     {
         layerEnemy = LayerMask.GetMask("Dire");
         boxCheckGround = transform.GetChild(1).GetComponent<BoxCollider2D>();
         PlayAnim("run");
-        if(index >= 3)
+        if (index >= 4)
         {
             LongRange = GamePlay.gameplay.width;
         }
@@ -143,7 +144,6 @@ public class Hero : MonoBehaviour {
                 }
             }
         }
-
     }
 
     private bool checkRun;
@@ -170,7 +170,7 @@ public class Hero : MonoBehaviour {
             if (Mathf.Abs(transform.position.x - property.enemy.transform.position.x) < 2)
             {
                 if (!property.enemy.checkDie && GamePlay.gameplay.killEnemyFireShield > 0)
-                {                   
+                {
                     property.enemy.level = 0;
                     property.enemy.currentHp = 0;
                     property.enemy.SetHealthBar();
@@ -196,6 +196,6 @@ public class Hero : MonoBehaviour {
             GamePlay.gameplay.hero[i].property.sprSkill[3].enabled = false;
             GamePlay.gameplay.hero[i].skillEffect[3].SetActive(false);
         }
-        
+
     }
 }

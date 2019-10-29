@@ -1,1 +1,64 @@
-{"imagePath":"orge_tex.png","width":512,"SubTexture":[{"width":87,"y":446,"height":83,"name":"demo2_0003_than_0002_Layer-2","x":90},{"width":151,"y":209,"height":230,"name":"demo2_0004_taytr","x":1},{"width":87,"y":441,"height":104,"name":"demo2_0003_than_0000_Layer-1","x":1},{"width":200,"y":1,"height":237,"name":"demo2_0003_than_0001_Layer-0-copy","x":295},{"width":154,"y":240,"height":158,"name":"demo2_0000_dau","x":289},{"width":189,"y":400,"height":71,"name":"demo2_0002_quan","x":289},{"width":292,"y":1,"height":206,"name":"demo2_0005_vk","x":1},{"width":133,"y":209,"height":235,"name":"demo2_0001_tayp","x":154}],"height":1024,"name":"orge"}
+{
+  "width": 512,
+  "imagePath": "orge_tex.png",
+  "height": 1024,
+  "name": "orge",
+  "SubTexture": [
+    {
+      "width": 87,
+      "y": 446,
+      "height": 83,
+      "name": "demo2_0003_than_0002_Layer-2",
+      "x": 90
+    },
+    {
+      "width": 151,
+      "y": 209,
+      "height": 230,
+      "name": "demo2_0004_taytr",
+      "x": 1
+    },
+    {
+      "width": 87,
+      "y": 441,
+      "height": 104,
+      "name": "demo2_0003_than_0000_Layer-1",
+      "x": 1
+    },
+    {
+      "width": 200,
+      "y": 1,
+      "height": 237,
+      "name": "demo2_0003_than_0001_Layer-0-copy",
+      "x": 295
+    },
+    {
+      "width": 154,
+      "y": 240,
+      "height": 158,
+      "name": "demo2_0000_dau",
+      "x": 289
+    },
+    {
+      "width": 189,
+      "y": 400,
+      "height": 71,
+      "name": "demo2_0002_quan",
+      "x": 289
+    },
+    {
+      "width": 292,
+      "y": 1,
+      "height": 206,
+      "name": "demo2_0005_vk",
+      "x": 1
+    },
+    {
+      "width": 133,
+      "y": 209,
+      "height": 235,
+      "name": "demo2_0001_tayp",
+      "x": 154
+    }
+  ]
+}

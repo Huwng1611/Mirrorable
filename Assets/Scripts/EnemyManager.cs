@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour {
+public class EnemyManager : MonoBehaviour
+{
 
     public static EnemyManager enemymanager;
 
@@ -15,7 +16,7 @@ public class EnemyManager : MonoBehaviour {
     public List<Enemy> enemy;
     //[HideInInspector]
     public List<int> enemyIndex;
-   // [HideInInspector]
+    // [HideInInspector]
     public List<int> enemyLevel;
 
     public int quatityManagerEnemy;
@@ -34,7 +35,7 @@ public class EnemyManager : MonoBehaviour {
         {
             Invoke("Gen1", timeToGen);
         }
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < enemyToGen.Length; i++)
         {
             Enemy obj = Instantiate(enemyToGen[i], new Vector3(0, 0, 0), Quaternion.identity);
             obj.index = i;
@@ -46,9 +47,9 @@ public class EnemyManager : MonoBehaviour {
         xPositionMin = -6;
         xPositionMax = -6;
     }
-    [HideInInspector]
+    //[HideInInspector]
     public int indexEnemy;
-    [HideInInspector]
+    //[HideInInspector]
     public bool checkFight;
 
     public bool test;
@@ -69,6 +70,10 @@ public class EnemyManager : MonoBehaviour {
 
     public void Gen()
     {
+        //dòng dưới để test gen item skill, test xong thì comment lại
+        //GamePlay.gameplay.GenItemSkill();
+
+
         int rd = Random.Range(0, 100);
         if (rd < 60)
         {
@@ -76,7 +81,7 @@ public class EnemyManager : MonoBehaviour {
         }
         else
         {
-            GamePlay.gameplay.GenDie(CameraFollow.camerafollow.transform.position.x + 21);
+            //GamePlay.gameplay.GenDie(CameraFollow.camerafollow.transform.position.x + 21);
             if (!checkGen)
             {
                 Invoke("Gen", timeToGen + 5);
@@ -85,13 +90,13 @@ public class EnemyManager : MonoBehaviour {
             {
                 Invoke("Gen1", timeToGen + 5);
             }
-        }      
+        }
     }
 
 
     public void GenEnemy()
-    {       
-        checkEndFight = false;       
+    {
+        checkEndFight = false;
         expTmp = 0;
         GamePlay.gameplay.GenItemSkill();
         for (int i = 0; i < GamePlay.gameplay.hero.Length; i++)
@@ -99,11 +104,11 @@ public class EnemyManager : MonoBehaviour {
             Hero herotmp = GamePlay.gameplay.hero[i];
             if (herotmp.gameObject.activeInHierarchy)
             {
-                expTmp += herotmp.property.exp * herotmp.property.level;               
+                expTmp += herotmp.property.exp * herotmp.property.level;
             }
         }
 
-        expTmp = expTmp * Random.Range(0.5f, 1.5f);
+        expTmp *= Random.Range(0.5f, 1.5f);
 
         int indexTmp = (int)(expTmp / 18.5f);
 
@@ -127,7 +132,7 @@ public class EnemyManager : MonoBehaviour {
             {
                 levelAdd = indexEnemy - 2;
                 quatityManagerEnemy = indexEnemy = 2;
-            }           
+            }
         }
         else
         {
@@ -135,17 +140,22 @@ public class EnemyManager : MonoBehaviour {
             {
                 quatityManagerEnemy = indexEnemy = 1;
             }
-            else if (indexEnemy > 5)
+            //else if (indexEnemy > 5)
+            //{
+            //    levelAdd = indexEnemy - 5;
+            //    quatityManagerEnemy = indexEnemy = 5;
+            //}
+            else if (indexEnemy > enemyToGen.Length)
             {
-                levelAdd = indexEnemy - 5;
-                quatityManagerEnemy = indexEnemy = 5;
+                levelAdd = indexEnemy - enemyToGen.Length;
+                quatityManagerEnemy = indexEnemy = enemyToGen.Length;
             }
             else
             {
                 levelAdd = 1;
             }
         }
-        
+
         GamePlay.gameplay.checkCallTeamRadiant = false;
 
         if (Random.Range(0, 100) > 50)
@@ -160,8 +170,9 @@ public class EnemyManager : MonoBehaviour {
 
         int[] temp = new int[0];
         do
-        {          
-            int index = Random.Range(0, 5);
+        {
+            //int index = Random.Range(0, 5);
+            int index = Random.Range(0, enemyToGen.Length);
             if (System.Array.FindIndex(temp, t => t == index) < 0)
             {
                 System.Array.Resize(ref temp, temp.Length + 1);
@@ -179,16 +190,16 @@ public class EnemyManager : MonoBehaviour {
         {
             Enemy e = enemy.Find(a => a.index == temp[i]);
             int rd = Random.Range(-1, levelAdd);
-            if(rd < 0)
+            if (rd < 0)
             {
                 rd = 0;
             }
-            levelAdd -= rd;           
-            e.gameObject.SetActive(true);          
+            levelAdd -= rd;
+            e.gameObject.SetActive(true);
             e.property.level = rd + 1;
-            
+
             // tim enemy level cao nhat
-            if(e.property.level * e.property.exp > expMaxEnemy)
+            if (e.property.level * e.property.exp > expMaxEnemy)
             {
                 expMaxEnemy = e.property.level * e.property.exp;
                 maxLevelEnemy = e.property.level;
@@ -199,8 +210,9 @@ public class EnemyManager : MonoBehaviour {
             enemyIndex.Add(e.index);
             enemyLevel.Add(e.property.level);
 
-            e.SetProperty();         
+            e.SetProperty();
             e.SetTranform();
+            Debug.Log("<color=red>Enemy name is: </color>" + "<b>" + e.name + "</b>");
 
             //if (xPositionMax == -6)
             //{
@@ -238,14 +250,14 @@ public class EnemyManager : MonoBehaviour {
         {
             UIManager.ui.imgWarning.rectTransform.anchoredPosition = new Vector3(0, -170, 0);
         }
-       
+
 
         Invoke("OffWarning", 2.5f);
 
 
         // GamePlay.gameplay.checkCallTeamRadiant = false;
-        checkCallTeam = false;
-    }   
+        //checkCallTeam = false;
+    }
 
     public void OffWarning()
     {
@@ -257,18 +269,23 @@ public class EnemyManager : MonoBehaviour {
         checkEndFight = false;
 
         GamePlay.gameplay.GenItemSkill();
-        
+
         int indexTmp = (int)(expTmp / 18.5f);
-   
+
         quatityManagerEnemy = indexEnemy = indexTmp + Random.Range(-indexTmp / 2, indexTmp / 2);
         if (indexEnemy <= 0)
         {
             quatityManagerEnemy = indexEnemy = 1;
         }
-        else if (indexEnemy > 5)
+        //else if (indexEnemy > 5)
+        //{
+        //    levelAdd = indexEnemy - 5;
+        //    quatityManagerEnemy = indexEnemy = 5;
+        //}
+        else if (indexEnemy > enemyToGen.Length)
         {
-            levelAdd = indexEnemy - 5;
-            quatityManagerEnemy = indexEnemy = 5;
+            levelAdd = indexEnemy - enemyToGen.Length;
+            quatityManagerEnemy = indexEnemy = enemyToGen.Length;
         }
         else
         {
@@ -317,12 +334,20 @@ public class EnemyManager : MonoBehaviour {
 
         expTmp += expIncrease;
         // GamePlay.gameplay.checkCallTeamRadiant = false;
-        checkCallTeam = false;
+        //checkCallTeam = false;
     }
 
     public void CallTeamEnemy(Transform target)
     {
-        for (int i = 0; i < 5; i++)
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        if (enemy[i].gameObject.activeInHierarchy)
+        //        {
+        //            enemy[i].target = target;
+        //            enemy[i].Move();
+        //        }
+        //    }
+        for (int i = 0; i < enemyToGen.Length; i++)
         {
             if (enemy[i].gameObject.activeInHierarchy)
             {
@@ -330,10 +355,9 @@ public class EnemyManager : MonoBehaviour {
                 enemy[i].Move();
             }
         }
-        checkFight = true;            
-        
+        checkFight = true;
     }
-    private bool checkCallTeam;
+    //private bool checkCallTeam;
     private bool checkEndFight;
     public void EndFight()
     {
@@ -354,10 +378,10 @@ public class EnemyManager : MonoBehaviour {
             checkFight = false;
             UpgradeLevelOrRespawn();
             GamePlay.gameplay.GoldDevil();
-            ClearList();                    
+            ClearList();
         }
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < enemyToGen.Length; i++)
         {
             Hero h = GamePlay.gameplay.hero[i];
             h.move.checkCalled = false;
@@ -407,7 +431,7 @@ public class EnemyManager : MonoBehaviour {
                 int leveltoUp = (int)(GamePlay.gameplay.currentExp[enemyIndex[i]] / herotmp.property.exp);
                 GamePlay.gameplay.currentExp[enemyIndex[i]] = GamePlay.gameplay.currentExp[enemyIndex[i]] - leveltoUp * herotmp.property.exp;
                 if (!herotmp.property.checkDie)
-                {                   
+                {
                     // + level               
                     herotmp.property.LevelUp(leveltoUp);
                 }
@@ -422,13 +446,13 @@ public class EnemyManager : MonoBehaviour {
                     //    leveltoUp = 2;
                     //}
                     herotmp.property.LevelUp(leveltoUp - 1);
-                   // herotmp.move.SetTransform();
+                    // herotmp.move.SetTransform();
                     herotmp.property.SetHpDefaulf();
-                }                              
+                }
             }
         }
     }
-    //[HideInInspector]
+    [HideInInspector]
     public bool checkDontMove;
 
     public void ClearList()
@@ -441,7 +465,7 @@ public class EnemyManager : MonoBehaviour {
     public void EndNoFight()
     {
         if (!checkEndFight)
-        {   
+        {
             for (int i = 0; i < enemy.Count; i++)
             {
                 enemy[i].gameObject.SetActive(false);
@@ -458,10 +482,10 @@ public class EnemyManager : MonoBehaviour {
             }
         }
         indexNoFight++;
-        if(indexNoFight >= GamePlay.gameplay.xAirPunchToUpGrade[PlayerPrefs.GetInt("levelAirPunch")])
+        if (indexNoFight >= GamePlay.gameplay.xAirPunchToUpGrade[PlayerPrefs.GetInt("levelAirPunch")])
         {
             PlayerPrefs.SetInt("levelAirPunch", PlayerPrefs.GetInt("levelAirPunch") + 1);
-            if(PlayerPrefs.GetInt("levelAirPunch") >= 3)
+            if (PlayerPrefs.GetInt("levelAirPunch") >= 3)
             {
                 PlayerPrefs.SetInt("levelAirPunch", 3);
             }

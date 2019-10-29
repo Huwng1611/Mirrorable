@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirPunch : MonoBehaviour {
+public class AirPunch : MonoBehaviour
+{
 
     public float speed;
     public BoxCollider2D coll;
@@ -10,8 +11,8 @@ public class AirPunch : MonoBehaviour {
     private void OnEnable()
     {
         check = false;
-        coll.enabled = false;      
-        Invoke("Fly",0.375f);
+        coll.enabled = false;
+        Invoke("Fly", 0.375f);
     }
     void Fly()
     {
@@ -19,7 +20,8 @@ public class AirPunch : MonoBehaviour {
         coll.enabled = true;
     }
     private bool check;
-    void Update () {
+    void Update()
+    {
         if (check)
         {
             transform.position = new Vector3(transform.position.x + Time.deltaTime * speed * dirfly, transform.position.y, transform.position.z);
@@ -42,15 +44,15 @@ public class AirPunch : MonoBehaviour {
     public bool checkTrigger;
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.gameObject.tag == "Dire" && !checkTrigger)
+        if (coll.gameObject.tag == "Dire" && !checkTrigger)
         {
             GamePlay.gameplay.BeginAirPunch();
             checkTrigger = true;
         }
-        else if(coll.gameObject.tag == "Die")
-        {           
+        else if (coll.gameObject.tag == "Die")
+        {
             coll.GetComponent<Animator>().Play("OffAnim");
         }
-        
+
     }
 }

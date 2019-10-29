@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
     [HideInInspector]
     public Property property;
@@ -17,7 +16,7 @@ public class Enemy : MonoBehaviour {
     void Awake()
     {
         property = gameObject.GetComponent<Property>();
-        rb = gameObject.GetComponent<Rigidbody2D>();      
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     [HideInInspector]
@@ -30,14 +29,14 @@ public class Enemy : MonoBehaviour {
     private void Start()
     {
         layerEnemy = LayerMask.GetMask("Radiant");
-        if( index >= 3)
+        if (index >= 4)
         {
             range = GamePlay.gameplay.width;
         }
         outCamera = GamePlay.gameplay.width * 1.75f;
     }
     public void OnEnable()
-    {       
+    {
         checkOutCamera = false;
         checkMove = false;
         checkFindEnemy = false;
@@ -46,7 +45,7 @@ public class Enemy : MonoBehaviour {
     public void SetTranform()
     {
         dirScale = EnemyManager.enemymanager.dirScaleToGen;
-        if(dirScale > 0)
+        if (dirScale > 0)
         {
             mat.color = new Vector4(1, 1, 1, 1);
         }
@@ -61,16 +60,16 @@ public class Enemy : MonoBehaviour {
     }
     public void OnDisable()
     {
-      
+
     }
 
     public Animator anim;
     public void PlayAnim(string ani)
     {
-        anim.Play(ani);      
+        anim.Play(ani);
     }
     public void SetProperty()
-    {        
+    {
         property.SetDefault();
     }
     [HideInInspector]
@@ -89,15 +88,16 @@ public class Enemy : MonoBehaviour {
                 if (!checkFindEnemy)
                 {
                     if ((tempCollider = Physics2D.OverlapBoxAll(new Vector3(transform.position.x, transform.position.y + dirScale * 0.65f), new Vector2(range, 1), 0, layerEnemy)).Length > 0)
-                    {                   
+                    {
                         property.enemy = tempCollider[Random.Range(0, tempCollider.Length)].GetComponent<Property>();
                         if (property.enemy != null)
                         {
                             EnemyManager.enemymanager.CallTeamEnemy(property.enemy.transform);
                             GamePlay.gameplay.CallTeamRadiant(transform);
-                            checkMove = false;                           
-                            PlayAnim("atk");                          
-                            property.Attack();                            
+                            checkMove = false;
+                            PlayAnim("atk");
+                            property.Attack();
+                            //property.textLevel.transform.localScale = new Vector3(transform.localScale.x, property.textLevel.transform.localScale.y, property.textLevel.transform.localScale.z);
                             property.enemy.listFighter.Add(property);
                         }
                     }
@@ -107,15 +107,14 @@ public class Enemy : MonoBehaviour {
                         {
                             //if (checkAnimRun)
                             //{
-                                PlayAnim("run");
-                               // checkAnimRun = false;
+                            PlayAnim("run");
+                            // checkAnimRun = false;
                             //}
                             if (dir == -1)
                             {
-                               
                                 if (transform.position.x > target.position.x)
                                 {
-                                    transform.position = new Vector3(transform.position.x + dir * Time.deltaTime * speed, transform.position.y, transform.position.z);                                   
+                                    transform.position = new Vector3(transform.position.x + dir * Time.deltaTime * speed, transform.position.y, transform.position.z);
                                 }
                                 else
                                 {
@@ -126,9 +125,17 @@ public class Enemy : MonoBehaviour {
                                             //target.position = new Vector3(target.transform.position.x + dir, target.transform.position.y, target.transform.position.z);
                                             if (GamePlay.gameplay.heroAmount >= 1)
                                             {
-                                                for (int i = 0; i < 5; i++)
+                                                //for (int i = 0; i < 5; i++)
+                                                //{
+                                                //    if (GamePlay.gameplay.hero[i].gameObject.activeInHierarchy)
+                                                //    {
+                                                //        target = GamePlay.gameplay.hero[i].transform;
+                                                //        Move();
+                                                //    }
+                                                //}
+                                                for (int i = 0; i < GamePlay.gameplay.hero.Length; i++)
                                                 {
-                                                    if (GamePlay.gameplay.hero[i].gameObject.activeInHierarchy)
+                                                    if (GamePlay.gameplay.hero[i].gameObject.activeInHierarchy /*&& !GamePlay.gameplay.hero[i].property.checkDie*/)
                                                     {
                                                         target = GamePlay.gameplay.hero[i].transform;
                                                         Move();
@@ -142,7 +149,7 @@ public class Enemy : MonoBehaviour {
                                             }
                                         }
 
-                                        checkAnimRun = true;
+                                        //checkAnimRun = true;
                                         //checkMove = false;
                                     }
 
@@ -163,9 +170,17 @@ public class Enemy : MonoBehaviour {
                                             //target.position = new Vector3(target.transform.position.x + dir, target.transform.position.y, target.transform.position.z);
                                             if (GamePlay.gameplay.heroAmount >= 1)
                                             {
-                                                for (int i = 0; i < 5; i++)
+                                                //for (int i = 0; i < 5; i++)
+                                                //{
+                                                //    if (GamePlay.gameplay.hero[i].gameObject.activeInHierarchy)
+                                                //    {
+                                                //        target = GamePlay.gameplay.hero[i].transform;
+                                                //        Move();
+                                                //    }
+                                                //}
+                                                for (int i = 0; i < GamePlay.gameplay.hero.Length; i++)
                                                 {
-                                                    if (GamePlay.gameplay.hero[i].gameObject.activeInHierarchy)
+                                                    if (GamePlay.gameplay.hero[i].gameObject.activeInHierarchy && !GamePlay.gameplay.hero[i].property.checkDie)
                                                     {
                                                         target = GamePlay.gameplay.hero[i].transform;
                                                         Move();
@@ -173,13 +188,13 @@ public class Enemy : MonoBehaviour {
                                                 }
                                             }
                                             else
-                                            {                                              
+                                            {
                                                 checkFindEnemy = false;
                                                 checkMove = false;
                                             }
                                         }
-                                        
-                                        checkAnimRun = true;
+
+                                        //checkAnimRun = true;
                                         //checkMove = false;
                                     }
                                 }
@@ -207,18 +222,18 @@ public class Enemy : MonoBehaviour {
             }
         }
     }
-    private bool checkAnimRun;
+    //private bool checkAnimRun;
     [HideInInspector]
     public bool checkOutCamera;
     //[HideInInspector]
     public Transform target;
-    
+
     //[HideInInspector]
     public bool checkMove;
 
     public int dir;
     public void Move()
-    {     
+    {
         checkMove = true;
         if (transform.position.x > target.position.x)
         {

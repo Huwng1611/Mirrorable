@@ -193,11 +193,19 @@ public class UIManager : MonoBehaviour
         {
             foreach (var obj in options)
             {
-                obj.gameObject.SetActive(true);
+                if (obj)
+                {
+                    obj.gameObject.SetActive(true);
+                }
             }
             options[0].onClick.AddListener(() =>
             {
-                SceneManager.LoadScene("Menu");
+                //SceneManager.LoadScene("Menu");
+                GameOver();
+                foreach (var obj in options)
+                {
+                    obj.gameObject.SetActive(false);
+                }
             });
             options[1].onClick.AddListener(() =>
             {
@@ -223,6 +231,7 @@ public class UIManager : MonoBehaviour
         //    Debug.Log("Show Ad here");
         //}
         //endtest
+        //GamePlay.gameplay.isGameOver = true;
         Time.timeScale = 0;
         GamePlay.gameplay.score = GamePlay.gameplay.gold + (int)CameraFollow.camerafollow.transform.position.x;
         textScore.text = GamePlay.gameplay.score.ToString();

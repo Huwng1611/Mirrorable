@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ice : MonoBehaviour {
+public class Ice : MonoBehaviour
+{
 
     bool check;
     public Animator anim;
-    void Update () {
-		if(GamePlay.gameplay.captain.transform.position.x >= transform.position.x - 3)
+    void Update()
+    {
+        if (GamePlay.gameplay.captain.transform.position.x >= transform.position.x - 3)
         {
             if (!check)
             {
@@ -41,7 +43,7 @@ public class Ice : MonoBehaviour {
                 }
             }
         }
-	}
+    }
     public int dir;
     public float speed;
     bool checkFall;

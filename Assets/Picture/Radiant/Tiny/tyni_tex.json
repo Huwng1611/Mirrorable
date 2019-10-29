@@ -1,1 +1,57 @@
-{"imagePath":"tyni_tex.png","width":1024,"SubTexture":[{"width":147,"y":1,"height":275,"name":"demo2_0004_taytr","x":449},{"width":167,"y":257,"height":191,"name":"demo2_0003_Layer-7-copy-3","x":1},{"width":104,"y":298,"height":108,"name":"2","x":300},{"width":128,"y":298,"height":152,"name":"3","x":170},{"width":265,"y":1,"height":254,"name":"1","x":1},{"width":179,"y":1,"height":295,"name":"demo2_0001_tayp","x":268},{"width":179,"y":278,"height":168,"name":"demo2_0000_dau","x":449}],"height":512,"name":"tyni"}
+{
+  "width": 1024,
+  "imagePath": "tyni_tex.png",
+  "height": 512,
+  "name": "tyni",
+  "SubTexture": [
+    {
+      "width": 147,
+      "y": 1,
+      "height": 275,
+      "name": "demo2_0004_taytr",
+      "x": 449
+    },
+    {
+      "width": 167,
+      "y": 257,
+      "height": 191,
+      "name": "demo2_0003_Layer-7-copy-3",
+      "x": 1
+    },
+    {
+      "width": 104,
+      "y": 298,
+      "height": 108,
+      "name": "2",
+      "x": 300
+    },
+    {
+      "width": 128,
+      "y": 298,
+      "height": 152,
+      "name": "3",
+      "x": 170
+    },
+    {
+      "width": 265,
+      "y": 1,
+      "height": 254,
+      "name": "1",
+      "x": 1
+    },
+    {
+      "width": 179,
+      "y": 1,
+      "height": 295,
+      "name": "demo2_0001_tayp",
+      "x": 268
+    },
+    {
+      "width": 179,
+      "y": 278,
+      "height": 168,
+      "name": "demo2_0000_dau",
+      "x": 449
+    }
+  ]
+}
